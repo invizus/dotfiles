@@ -1,0 +1,46 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["sway/workspaces", "sway/window", "custom/chrome"],
+  "modules-center": ["clock"],
+  "modules-right": ["custom/bluetooth", "custom/volume", "network", "battery"],
+
+  "clock": {
+    "format": "{:%a %d %b %H:%M}"
+  },
+
+  "custom/bluetooth": {
+    "exec": "echo ",
+    "interval": 60,
+    "on-click": "~/.config/waybar/scripts/bt-picker.sh"
+  },
+
+  "custom/volume": {
+    "format": " {}%",
+    "format-muted": " muted",
+    "exec": "pamixer --get-volume",
+    "interval": 1,
+    "on-click": "pamixer -t"
+  },
+
+  "network": {
+    "format-wifi": " {signalStrength}% {essid}",
+    "format-ethernet": " {ifname}",
+    "format-disconnected": " disconnected",
+    "tooltip" : true,
+    "tooltip-format" : "{ipaddr} via {gwaddr}"
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "custom/chrome": {
+  "exec": "echo ",
+  "tooltip": "Chrome",
+  "on-click": "google-chrome-stable",
+  "interval": 9999
+  }
+}
+
