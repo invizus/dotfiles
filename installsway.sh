@@ -4,10 +4,10 @@ USER_NAME=$(logname)
 USER_HOME="/home/$USER_NAME"
 
 echo ">>> Updating package list..."
-apt update
+sudo apt update
 
 echo ">>> Installing core packages..."
-apt install -y \
+sudo apt install -y \
   sway swayidle swaylock \
   waybar foot wofi \
   wl-clipboard grim slurp kanshi \
@@ -20,7 +20,7 @@ apt install -y \
   blueman wlogout curl wget
 
 echo ">>> Removing xwayland if present..."
-apt remove -y xwayland || true
+sudo apt remove -y xwayland || true
 
 echo ">>> Adding user to input, video, seat groups..."
 usermod -aG input,video,seat "$USER_NAME"
