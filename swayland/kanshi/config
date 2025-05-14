@@ -1,0 +1,8 @@
+profile home {
+    output "LG Electronics LG ULTRAGEAR 312NTQDC5780" mode 2560x1440@59.951 position 5760,0 scale 1
+    output "InfoVision Optoelectronics (Kunshan) Co.,Ltd China 0x057D Unknown" mode 1920x1080@60.010 position 3840,0 scale 1
+}
+
+profile laptop_only {
+    output "InfoVision Optoelectronics (Kunshan) Co.,Ltd China 0x057D Unknown" enable
+}
