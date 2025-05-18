@@ -1,5 +1,5 @@
 set $mod Mod4
-set $term kitty
+set $term alacritty
 set $menu wofi --show drun
 #font pango:monospace 10
 font pango:DejaVu Sans Mono 10
@@ -13,16 +13,19 @@ exec_always swayidle -w \
 
 #exec_always waybar
 exec waybar
-exec_always wl-paste --watch cliphist store
 exec_always kanshi
+exec_always wl-paste --watch cliphist store
+#exec wl-paste --type text --watch clipman store
+exec_always ~/.config/sway/wipe-clip.sh
+
 exec mako
 
 input * {
   xkb_layout gb
-  natural_scroll enabled
+  natural_scroll disabled
 }
 
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec $term
 bindsym $mod+d exec wofi --show drun
 bindsym $mod+shift+q kill
 bindsym $mod+shift+r reload
@@ -37,19 +40,23 @@ bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
 bindsym $mod+4 workspace number 4
-# Alt+Tab to go to next workspace
-bindsym Mod1+Tab workspace next_on_output
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+# Super+Tab to go to next workspace
+bindsym $mod+Tab workspace next_on_output
+# Alt tab to rotate bteween two workspaces
+bindsym Mod1+Tab workspace back_and_forth
 bindsym $mod+L exec wlogout
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 default_border pixel 1
-client.focused          #000000 #000000 #ffffff #000000
-client.unfocused        #000000 #000000 #888888 #000000
-client.urgent           #ff0000 #ff0000 #ffffff #ff0000
-client.focused_inactive #000000 #000000 #bbbbbb #000000
+client.focused          #005577 #005577 #ffffff #005577
+client.unfocused        #222222 #222222 #888888 #222222
+client.urgent           #770000 #770000 #ffffff #770000
+client.focused_inactive #333333 #333333 #bbbbbb #333333
 
-gaps inner 10
-gaps outer 5
+gaps inner 0
+gaps outer 1
 
 # Send 'lite' to hidden workspace
 bindsym $mod+n move container to scratchpad
@@ -60,12 +67,21 @@ bindsym $mod+f fullscreen toggle
 #bindsym Print exec grim ~/Pictures/screenshot-$(date +%F-%H%M%S).png
 bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%F-%H%M%S).png
 
-# Thinkpad Brightness
+exec_always source ~/.config/sway/env
+
+# Brightness
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
-# Thinkpad Volume
+# Volume
 bindsym XF86AudioRaiseVolume exec pamixer -i 5
 bindsym XF86AudioLowerVolume exec pamixer -d 5
 bindsym XF86AudioMute exec pamixer -t
+
+# Move workspace to the next output (monitor)
+bindsym $mod+Shift+Control+Right move workspace to output right
+bindsym $mod+Shift+Control+Left move workspace to output left
+
+# let volume control appear on the right top
+for_window [app_id="com.example.VolumePopup"] move position 1400 px 0 px
 
