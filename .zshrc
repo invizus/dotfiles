@@ -3,7 +3,10 @@
 export PATH=$HOME/bin:/usr/local/bin:/opt/vault:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/roman/.oh-my-zsh
+export ZSH=/home/nv/.oh-my-zsh
+export OZONE_PLATFORM=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -107,24 +110,22 @@ alias ccgrep="grep -v '^#\|^$'"
 alias blanks="grep -nr '[[:blank:]]$'"
 
 autoload -U +X bashcompinit && bashcompinit
+
+# hashicorp
 complete -o nospace -C /opt/vault/vault vault
-
-complete -o nospace -C /usr/sbin/terraform terraform
-
-#gam() { "/home/roman/bin/gam/gam" "$@" ; }
-
-function gam() { "/home/roman/bin/gam/gam" "$@" ; }
-
 complete -o nospace -C /usr/local/bin/terraform terraform
 # alias ccgrep = "grep -v '^#\|^$'"
 
-complete -o nospace -C /usr/local/bin/packer packer
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# This stuff was from previous system, not reinstalled.
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias gam="/home/roman/bin/gam/gam"
-. <(flux completion zsh)
-
-alias fixkbd="sudo udevadm trigger --subsystem-match=input --action=change"
+#function gam() { "/home/roman/bin/gam/gam" "$@" ; }
+#gam() { "/home/roman/bin/gam/gam" "$@" ; }
+#alias gam="/home/roman/bin/gam/gam"
+#alias fixkbd="sudo udevadm trigger --subsystem-match=input --action=change"
+# Load Angular CLI autocompletion.
+#source <(ng completion script)
+#complete -o nospace -C /usr/local/bin/packer packer
