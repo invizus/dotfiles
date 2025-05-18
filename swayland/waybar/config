@@ -1,9 +1,9 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["sway/workspaces", "sway/window", "custom/chrome"],
+  "modules-left": ["sway/workspaces", "custom/chrome", "custom/code", "sway/window"],
   "modules-center": ["clock"],
-  "modules-right": ["custom/bluetooth", "custom/volume", "network", "battery"],
+  "modules-right": ["custom/bluetooth", "custom/volume", "network", "battery", "custom/power"],
 
   "clock": {
     "format": "{:%a %d %b %H:%M}"
@@ -12,15 +12,15 @@
   "custom/bluetooth": {
     "exec": "echo ",
     "interval": 60,
-    "on-click": "~/.config/waybar/scripts/bt-picker.sh"
+    "on-click": "~/.config/waybar/scripts/bt-launch.sh"
   },
 
   "custom/volume": {
-    "format": " {}%",
-    "format-muted": " muted",
-    "exec": "pamixer --get-volume",
+    "format": "{} %",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/get-volume2.sh",
     "interval": 1,
-    "on-click": "pamixer -t"
+    "on-click": "~/.config/waybar/scripts/wpctl.py"
   },
 
   "network": {
@@ -41,6 +41,20 @@
   "tooltip": "Chrome",
   "on-click": "google-chrome-stable",
   "interval": 9999
+  },
+
+  "custom/code": {
+    "exec": "echo ",
+    "tooltip": "VSCode",
+    "on-click": "code --ozone-platform=wayland",
+    "interval": 9999
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": "Power Menu",
+    "on-click": "wlogout",
+    "interval": 3600
   }
 }
 
